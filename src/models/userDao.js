@@ -1,7 +1,7 @@
 const dataSource = require("./dataSource");
 
 const getUserbyId = async (kakaoId) => {
-  const result = await dataSource.query(
+  return await dataSource.query(
     `
     SELECT 
       users.kakao_id as kakaoId,
@@ -10,7 +10,6 @@ const getUserbyId = async (kakaoId) => {
     WHERE kakao_id = ${kakaoId}
     `
   );
-  return result;
 };
 
 const createUserByKakao = async (kakaoId, email) => {
