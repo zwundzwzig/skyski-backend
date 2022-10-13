@@ -1,6 +1,6 @@
 const dataSource = require("./dataSource");
 
-const getHotlesNearByAirport = async (filter, flightFirst, flightSecond) => {
+const getHotlesNearByAirport = async (filter, flightFirst, flightSecond, limit) => {
   let sort = (filter != "rate") ? (`ORDER BY ${filter}`) : (`ORDER BY ${filter} DESC`);
   let result = await dataSource.query(
     `
@@ -24,6 +24,7 @@ const getHotlesNearByAirport = async (filter, flightFirst, flightSecond) => {
      ON flights.route_id = routes.id
     WHERE flights.id = ${flightFirst}
     ${sort}
+    LIMIT ${limit}
     `
   );
 
